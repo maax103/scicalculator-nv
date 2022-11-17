@@ -19,7 +19,7 @@ export const HeaderContainer = styled.header`
         align-items:center
     }
     img{
-        height: 140px;
+        height: 50px;
         /* display: inline-block; */
     }
 `

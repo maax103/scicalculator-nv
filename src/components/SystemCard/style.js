@@ -17,6 +17,9 @@ export const SystemCardContainer = styled.div`
     padding: 0.5rem;
   }
   label {
+    &:hover{
+      transform: scale(1.02);
+    }
     /* display: inline-block; */
     margin-top: 0.5rem;
     input {

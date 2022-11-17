@@ -4,57 +4,52 @@ import { CardContainer } from "./style";
 
 export const ClientCard = () => {
   const context = useContext(UserContext);
+  const clientsDescription = [
+    '4 a 7',
+    '8 a 11',
+    '12 a 15',
+    '16 a 20',
+    '21 a 25'
+  ]
 
   function handleClient(client) {
     let clients = {
       "1": false,
       "2": false,
       "3": false,
+      "4": false,
+      "5": false
     };
     clients[client] = true;
+    console.log(client);
     context.setClients(clients);
+  }
+
+  function ClientOption({ children, n }) {
+    if (!children) return
+    return (
+      <label className="clientLabel">
+        <input
+          type="radio"
+          name="client"
+          onChange={() => {
+            handleClient(n);
+          }}
+          value={context.clients[n]}
+          checked={context.clients[n]}
+        ></input>
+        {children}
+      </label>
+    )
   }
 
   return (
     <CardContainer>
-      <h1>Selecione o tipo de cliente</h1>
+      <h1>Selecione a quantidade de terminais</h1>
       <div>
-        <label>
-          <input
-            type="radio"
-            name="client"
-            onChange={() => {
-              handleClient(1);
-            }}
-            value={context.clients[1]}
-            checked={context.clients[1]}
-          ></input>
-          Cliente final (Empresa)
-        </label>
-        <label>
-          <input
-            type="radio"
-            name="client"
-            onChange={() => {
-              handleClient(2);
-            }}
-            value={context.clients[2]}
-            checked={context.clients[2]}
-          ></input>
-          Empresa com 1 ou 2 usuários
-        </label>
-        <label>
-          <input
-            type="radio"
-            name="client"
-            onChange={() => {
-              handleClient(3);
-            }}
-            value={context.clients[3]}
-            checked={context.clients[3]}
-          ></input>
-          Empresa acima de 3 usuários
-        </label>
+        {Object.keys(context.clients).map((_, index) => {
+          return <ClientOption key={index} n={index}>{clientsDescription[index]}</ClientOption>
+        })}
       </div>
     </CardContainer>
   );

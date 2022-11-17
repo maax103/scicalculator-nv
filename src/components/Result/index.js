@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { ResultContainer } from "./style";
 import { tasklist } from "../../const/tasklist";
 import { UserContext } from "../../context/context";
@@ -36,11 +36,17 @@ export const Result = ({ activeItems }) => {
       };
     });
   }
-
-  const clientFactorList = ["", 2.5, 0.6, 1];
+  const TRIBUTACAOFACTOR = {
+    'MEI'               : 1,
+    "Simples Nacional"  : 1,
+    "Lucro Presumido"   : 2,
+    "Lucro Real"        : 3,
+    "Terceiro Setor"    : 1,
+  }
+  const clientFactorList = ["", 1, 1.25, 1.5, 1.75, 2];
   let clientFactor = 0;
   Object.keys(context.clients).forEach((clientKey)=>{
-    if(context.clients[clientKey] === true){
+    if(context.clients[clientKey - 1] === true){
       clientFactor = clientFactorList[clientKey];
     }
   })
@@ -48,6 +54,15 @@ export const Result = ({ activeItems }) => {
   function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
+
+  const [userFactor, setUserFactor] = useState(0);
+  useEffect(()=>{
+    Object.keys(TRIBUTACAOFACTOR).forEach((elem) =>{
+      if(context.tributacao[elem] === true){
+        setUserFactor(TRIBUTACAOFACTOR[elem]);
+      }
+    })
+  },[context.tributacao]);
 
   return (
     <ResultContainer>
@@ -61,7 +76,7 @@ export const Result = ({ activeItems }) => {
               return context.systems[system] ? (
                 <li key={system}>
                   <p>{capitalizeFirstLetter(system)}</p>
-                  <p>{total[system]}</p>
+                  <p>{(total[system] * clientFactor * userFactor).toFixed(1)}</p>
                 </li>
               ) : (
                 ""
@@ -69,7 +84,7 @@ export const Result = ({ activeItems }) => {
             })}
             <li>
               <p>Fator usuário</p>
-              <p>{clientFactor}</p>
+              <p>{(userFactor * clientFactor).toFixed(2)}</p>
             </li>
           </ul>
           <div>
@@ -80,7 +95,7 @@ export const Result = ({ activeItems }) => {
                   (acum, system) =>
                     acum + total[system] * context.systems[system],
                   0
-                ) * clientFactor
+                ) * clientFactor * userFactor
               )}
             </p>
           </div>

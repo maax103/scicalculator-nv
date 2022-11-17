@@ -7,6 +7,7 @@ export const SystemButton = ({ name }) => {
     const context = useContext(UserContext);
     const img = require('../../../assets/unico_' + name + ".png")
     const bgColor = {
+        "geral": "#80B6C9",
         "folha": "#80B6C9",
         "fiscal": "#80B6C9",
         "contábil": "#80B6C9",
@@ -15,6 +16,8 @@ export const SystemButton = ({ name }) => {
         "orcamentos": "#80B6C9",
         "protocolos": "#80B6C9",
         "notificações": "#80B6C9",
+        "tecweb": "#80B6C9",
+        "impostos": "#80B6C9",
     }
 
     return (
