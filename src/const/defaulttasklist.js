@@ -1,7 +1,4 @@
 export const defaulttasklist = {
-    "geral":{
-
-    },
     "folha": {
         "Cadastros e correções": true,
         "Mensalista": true,
@@ -77,9 +74,6 @@ export const defaulttasklist = {
         "Lançamentos de tarefas": 0.25,
         "Relatórios": 0.25,
     },
-    "orcamentos": {
-        
-    },
     "protocolos": {
         "Consulta e emissão de protocolos" : 1,
     },
@@ -100,7 +94,7 @@ export const defaulttasklist = {
         "ISS Legal SCI": 1,
         "RH NET Social": 2,
         "Integra NET": 1,
-        "SBS - Smart Bank Statement": 1.5,
+        "SBS - Smart Bank Statement": 0.75,
         "SCI Report - Serviços 24H": 2,
         // "SCI Report - Tarefas": 1,
         "SCI Report - Atendimento": 0.5,

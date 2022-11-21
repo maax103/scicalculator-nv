@@ -39,11 +39,11 @@ export const Result = ({ activeItems }) => {
   const TRIBUTACAOFACTOR = {
     'MEI'               : 1,
     "Simples Nacional"  : 1,
-    "Lucro Presumido"   : 2,
-    "Lucro Real"        : 3,
+    "Lucro Presumido"   : 1.75,
+    "Lucro Real"        : 2,
     "Terceiro Setor"    : 1,
   }
-  const clientFactorList = ["", 1, 1.25, 1.5, 1.75, 2];
+  const clientFactorList = ["", 1, 1.12, 1.25, 1.37, 1.5];
   let clientFactor = 0;
   Object.keys(context.clients).forEach((clientKey)=>{
     if(context.clients[clientKey - 1] === true){

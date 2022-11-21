@@ -29,16 +29,14 @@ function App() {
     'Terceiro Setor'    : false
   });
   const [systems, setSystems] = useState({
-    geral: true,
     folha: true,
     fiscal: true,
     contábil: true,
     financeiro: true,
     tarefas: false,
-    orcamentos: false,
     protocolos: false,
-    notificações: false,
-    impostos: false,
+    notificações: true,
+    impostos: true,
     tecweb: false,
   });
   const [activeMenu, setActiveMenu] = useState("geral");
